@@ -6,6 +6,8 @@ def ft_seed_inventor(seed, quantity, type):
     elif (type == "area"):
         print(f"{seed.title()} seeds: covers {quantity} square meters")
 
-# ft_seed_inventor("tomato", 15, "packets")
-# ft_seed_inventor("carrot", 8, "grams")
-# ft_seed_inventor("lettuce", 12, "area")
+
+if __name__ == "__main__":
+    ft_seed_inventor("tomato", 15, "packets")
+    ft_seed_inventor("carrot", 8, "grams")
+    ft_seed_inventor("lettuce", 12, "area")

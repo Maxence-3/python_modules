@@ -8,4 +8,6 @@ def ft_count_harvest_recursive(days=0, i=0):
     else:
         print("Harvest time!")
 
-# ft_count_harvest_recursive()
+
+if __name__ == "__main__":
+    ft_count_harvest_recursive()

@@ -4,4 +4,6 @@ def ft_harvest_total():
     day3 = input("Day 3 harvest: ")
     print(f"Total harvest: {int(day1) + int(day2) + int(day3)}")
 
-# ft_harvest_total()
+
+if __name__ == "__main__":
+    ft_harvest_total()

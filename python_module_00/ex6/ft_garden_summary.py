@@ -5,4 +5,6 @@ def ft_garden_summary():
     print(f"Plants: {plants}")
     print("Status: Growing well!")
 
-# ft_garden_summary()
+
+if __name__ == "__main__":
+    ft_garden_summary()
