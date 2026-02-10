@@ -8,24 +8,25 @@ class Plant:
         print(f"Created: {self.name} ({self.height}cm, {self.age} days)")
 
 
-plants_infos = [
-    ("Rose", 25, 30),
-    ("Oak", 200, 365),
-    ("Cactus", 5, 90),
-    ("Sunflower", 80, 45),
-    ("Fern", 15, 120),
-]
+if __name__ == "__main__":
+    plants_infos = [
+        ("Rose", 25, 30),
+        ("Oak", 200, 365),
+        ("Cactus", 5, 90),
+        ("Sunflower", 80, 45),
+        ("Fern", 15, 120),
+    ]
 
-plants = []
+    plants = []
 
-for name, height, age in plants_infos:
-    plants.append(Plant(name, height, age))
+    for name, height, age in plants_infos:
+        plants.append(Plant(name, height, age))
 
-i = 0
+    i = 0
 
-print("=== Plant Factory Ouput ===")
-for plant in plants:
-    plant.print_data()
-    i += 1
+    print("=== Plant Factory Output ===")
+    for plant in plants:
+        plant.print_data()
+        i += 1
 
-print(f"\nTotal plants created: {i}")
+    print(f"\nTotal plants created: {i}")

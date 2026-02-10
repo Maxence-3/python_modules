@@ -30,18 +30,21 @@ class Vegetable(Plant):
         self.nutritional_value = nutritional_value
 
 
-rose = Flower("Rose", 25, 30, "red")
-oak = Tree("Oak", 500, 1825, 50)
-tomato = Vegetable("Tomato", 80, 90, "summer", "C")
+if __name__ == "__main__":
+    rose = Flower("Rose", 25, 30, "red")
+    oak = Tree("Oak", 500, 1825, 50)
+    tomato = Vegetable("Tomato", 80, 90, "summer", "C")
 
-print("=== Garden Plant Types ===")
-print(f"\n{rose.name} (Flower): {rose.height}cm, {rose.age} days, {rose.color} color")
-rose.bloom()
-print(
-    f"\n{oak.name} (Tree): {oak.height}cm, {oak.age} days, {oak.trunk_diameter}cm diameter"
-)
-oak.produce_shade()
-print(
-    f"\n{tomato.name} (Vegetable): {tomato.height}cm, {tomato.age} days, {tomato.harvest_season} harvest"
-)
-print(f"{tomato.name} is rich in vitamin {tomato.nutritional_value}")
+    print("=== Garden Plant Types ===\n")
+
+    print(f"{rose.name} (Flower): \
+{rose.height}cm, {rose.age} days, {rose.color} color")
+    rose.bloom()
+
+    print(f"\n{oak.name} (Tree): \
+{oak.height}cm, {oak.age} days, {oak.trunk_diameter}cm diameter")
+    oak.produce_shade()
+
+    print(f"\n{tomato.name} (Vegetable): \
+{tomato.height}cm, {tomato.age} days, {tomato.harvest_season} harvest")
+    print(f"{tomato.name} is rich in vitamin {tomato.nutritional_value}")
