@@ -1,5 +1,8 @@
-def rare_achievement(alice, bob, charlie):
-    rare = set()
+def rare_achievement(
+        alice: set[str],
+        bob: set[str],
+        charlie: set[str]) -> set[str]:
+    rare: set[str] = set()
 
     for achievement in alice:
         if achievement not in bob and achievement not in charlie:
@@ -16,13 +19,16 @@ def rare_achievement(alice, bob, charlie):
 if __name__ == "__main__":
     print("=== Achievement Tracker System ===\n")
 
-    alice = {"first_kill", "level_10", "treasure_hunter", "speed_deamon"}
-    bob = {"first_kill", "level_10", "boss_slayer", "collector"}
-    charlie = {
+    alice: set[str] = {"first_kill",
+                       "level_10",
+                       "treasure_hunter",
+                       "speed_demon"}
+    bob: set[str] = {"first_kill", "level_10", "boss_slayer", "collector"}
+    charlie: set[str] = {
         "level_10",
         "treasure_hunter",
         "boss_slayer",
-        "speed_deamon",
+        "speed_demon",
         "perfectionist"
     }
 
@@ -32,7 +38,7 @@ if __name__ == "__main__":
 
     print("=== Achievement Analytics ===\n")
 
-    union = alice.union(bob, charlie)
+    union: set[str] = alice.union(bob, charlie)
     print(f"All unique achievements: {union}")
     print(f"Total unique achievements: {len(union)}\n")
 

@@ -1,13 +1,15 @@
 import random
 import time
+from typing import Generator
 
 
-def game_event_stream(count):
-    players = ['alice', 'bob', 'charlie']
-    actions = ['killed monster', 'found treasure', 'leveled up']
+def game_event_stream(
+        count: int) -> Generator[dict[str, str | int], None, None]:
+    players: list[str] = ['alice', 'bob', 'charlie']
+    actions: list[str] = ['killed monster', 'found treasure', 'leveled up']
 
     for i in range(1, count + 1):
-        event = {
+        event: dict[str, str | int] = {
             'id': i,
             'player': random.choice(players),
             'level': random.randint(1, 20),
@@ -16,20 +18,20 @@ def game_event_stream(count):
         yield event
 
 
-def process_game_events():
-    total_events = 0
-    high_level = 0
-    treasure_events = 0
-    level_up_events = 0
+def process_game_events() -> tuple[int, int, int, int, float]:
+    total_events: int = 0
+    high_level: int = 0
+    treasure_events: int = 0
+    level_up_events: int = 0
 
-    start_time = time.time()
+    start_time: float = time.time()
 
     for event in game_event_stream(1000):
         total_events += 1
 
         if total_events <= 3:
             print(f"Event {event['id']}: Player {event['player']} \
-                (level {event['level']}) {event['action']}")
+(level {event['level']}) {event['action']}")
         if event['level'] > 10:
             high_level += 1
         if event['action'] == 'found treasure':
@@ -40,23 +42,23 @@ def process_game_events():
     if total_events > 3:
         print("...")
 
-    return total_events, high_level, treasure_events, level_up_events, time.time() - start_time
+    return (total_events, high_level, treasure_events, level_up_events,
+            time.time() - start_time)
 
 
-def fibonacci_sequence():
-    a = 0
-    b = 1
-    for i in range(10):
+def fibonacci_sequence() -> Generator[int, None, None]:
+    a: int = 0
+    b: int = 1
+    for _ in range(10):
         yield a
         a, b = b, a + b
-        i += 1
 
 
-def prime_number():
-    i = 0
-    n = 2
+def prime_number() -> Generator[int, None, None]:
+    i: int = 0
+    n: int = 2
 
-    def is_prime(n):
+    def is_prime(n: int) -> bool:
         for i in range(2, n):
             if n % i == 0:
                 return False
@@ -69,7 +71,7 @@ def prime_number():
         n += 1
 
 
-def demonstration_generator():
+def demonstration_generator() -> None:
     print("Fibonacci sequence (first 10): ", end="")
     i = 0
     for n in fibonacci_sequence():
@@ -91,8 +93,9 @@ def demonstration_generator():
 if __name__ == "__main__":
     print("=== Game Data Stream Processor ===\n")
 
-    print("Processing 1000 game events...")
-    total_events, high_level, treasure_events, level_up_events, processing_time = process_game_events()
+    print("Processing 1000 game events...\n")
+    (total_events, high_level, treasure_events,
+     level_up_events, processing_time) = process_game_events()
 
     print("\n=== Stream Analytics ===")
     print(f"Total events processed: {total_events}")
