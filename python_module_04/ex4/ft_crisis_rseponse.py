@@ -1,18 +1,20 @@
-def open_file(input_file):
+def open_file(input_file: str) -> None:
     try:
         with open(input_file, "r") as file:
-            content = file.read()
-            print(f"ROUTINE ACCESS: Attempting access to '{input_file}'")
-            print(f"SUCCESS: Archive recovered - ''Knowledge preserved for humanity''")
-            print("STATUS: Normal operation resumed\n")
-    except FileNotFoundError as e:
+            _: str = file.read()
+        print(f"ROUTINE ACCESS: Attempting access to '{input_file}'")
+        print("SUCCESS: Archive recovered - \
+''Knowledge preserved for humanity''")
+        print("STATUS: Normal operation resumed\n")
+    except FileNotFoundError:
         print(f"CRISIS ALERT: Attemping access to '{input_file}'...")
         print("RESPONSE: Archive not found in storage matrix")
         print("STATUS: Crisis handled, system stable\n")
-    except PermissionError as e:
+    except PermissionError:
         print(f"CRISIS ALERT: Attemping access to '{input_file}'...")
         print("RESPONSE: Security protocols deny access")
         print("STATUS: Crisis handled, security maintained\n")
+
 
 if __name__ == "__main__":
     print("=== CYBER ARCHIVES - CRISIS RESPONSE SYSTEM ===\n")

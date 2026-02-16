@@ -1,4 +1,4 @@
-def recover_ancient_text():
+def recover_ancient_text() -> None:
     print("Accessing Storage Vault: ancient_fragment.txt")
     try:
         f = open("ancient_fragment.txt", "r")
@@ -10,6 +10,7 @@ def recover_ancient_text():
         print("ERROR: Storage vault not found.")
     finally:
         print("\nData recovery complete. Storage unit disconnected.")
+
 
 if __name__ == "__main__":
     print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===\n")

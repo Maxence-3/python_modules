@@ -1,0 +1,58 @@
+from ex0.Card import Card
+from ex2.Combatable import Combatable
+from ex2.Magical import Magical
+
+
+class EliteCard(Card, Combatable, Magical):
+    def __init__(self,
+                 name: str,
+                 cost: int,
+                 rarity: str,
+                 attack_power: int,
+                 defense_power: int,
+                 mana_pool: int,
+                 spell_power: int):
+        super().__init__(name, cost, rarity)
+        self.attack_power = attack_power
+        self.defense_power = defense_power
+        self.mana_pool = mana_pool
+        self.spell_power = spell_power
+
+    def play(self, game_state: dict) -> dict:
+        pass
+
+    def attack(self, target) -> dict:
+        return {
+            'attacker': self.name,
+            'target': target,
+            'damage': self.attack_power,
+            'combat_type': "melee"
+        }
+
+    def defend(self, incoming_damage):
+        damage_blocked = min(self.defense_power, incoming_damage)
+        damage_taken = incoming_damage - damage_blocked
+        return {
+            'defender': self.name,
+            'damage_taken': damage_taken,
+            'damage_blocked': damage_blocked,
+            'still_alive': True if damage_blocked > 0 else False
+        }
+
+    def cast_spell(self, spell_name: str, targets: list) -> dict:
+        return {
+            'caster': self.name,
+            'spell': spell_name,
+            'targets': targets,
+            'mana_used': 4
+        }
+
+    def channel_mana(self, amount):
+        self.mana_pool += amount
+        return {'channeled': amount, 'total_mana': self.mana_pool}
+
+    def get_combat_stats(self):
+        return super().get_combat_stats()
+
+    def get_magic_stats(self):
+        return super().get_magic_stats()
