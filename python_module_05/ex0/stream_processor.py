@@ -1,31 +1,32 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+
 
 class DataProcessor(ABC):
     @abstractmethod
-    def process(self, data: Any) -> str:
+    def process(self, data: any) -> str:
         pass
 
     @abstractmethod
-    def validate(self, data: Any) -> bool:
+    def validate(self, data: any) -> bool:
         pass
 
     def format_output(self, result: str) -> str:
         return f"Output: {result}"
 
-class NumericProcessor(DataProcessor):
-    def validate(self, data: Any) -> bool:
-        try:
-            if not isinstance(data, list):
-                return False
-            for item in data:
-                if not isinstance(item, int):
-                    return False
-            return True
-        except:
-            return False
 
-    def process(self, data: Any) -> str:
+class NumericProcessor(DataProcessor):
+    def validate(self, data: any) -> bool:
+        # try:
+        if not isinstance(data, list):
+            return False
+        for item in data:
+            if not isinstance(item, int):
+                return False
+        return True
+        # except:
+        #     return False
+
+    def process(self, data: any) -> str:
         if not self.validate(data):
             raise ValueError("Invalid numeric data")
         else:
@@ -34,25 +35,27 @@ class NumericProcessor(DataProcessor):
             avg = total/length
             return f"Processed {length} numeric values, sum={total}, avg={avg}"
 
+
 class TextProcessor(DataProcessor):
-    def validate(self, data: Any) -> bool:
-        try:
-            if not isinstance(data, str):
-                return False
-            return True
-        except:
+    def validate(self, data: any) -> bool:
+        # try:
+        if not isinstance(data, str):
             return False
-    
-    def process(self, data: Any) -> str:
+        return True
+        # except:
+        #     return False
+
+    def process(self, data: any) -> str:
         if not self.validate(data):
-            raise ValueError ("Invalid text data")
+            raise ValueError("Invalid text data")
         else:
             length = len(data)
             words = len(data.split())
             return f"Processed text: {length} characters, {words} words"
 
+
 class LogProcessor(DataProcessor):
-    def validate(self, data: Any) -> bool:
+    def validate(self, data: any) -> bool:
         if not isinstance(data, str):
             return False
         elif "ERROR" in data or "INFO" in data:
@@ -60,17 +63,17 @@ class LogProcessor(DataProcessor):
         else:
             return False
 
-    def process(self, data: Any) -> str:
+    def process(self, data: any) -> str:
         if not self.validate(data):
-            raise ValueError ("Invalid log data")
-        
+            raise ValueError("Invalid log data")
+
         if "ERROR" in data:
             level = "ERROR"
             prefix = "[ALERT]"
         elif "INFO" in data:
             level = "INFO"
             prefix = "[INFO]"
-        
+
         message = data.split(":", 1)[1].strip() if ":" in data else data
 
         return f"{prefix} {level} level detected: {message}"
