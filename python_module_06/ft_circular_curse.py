@@ -1,6 +1,7 @@
 from alchemy.grimoire import validate_ingredients
 from alchemy.grimoire import record_spell
 
+
 if __name__ == "__main__":
     print("=== Circular Curse Breaking ===\n")
 

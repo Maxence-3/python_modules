@@ -1,6 +1,6 @@
-def validate_ingredients(ingredients):
+def validate_ingredients(ingredients: str) -> str:
     valid_ingredients = ["fire", "water", "earth", "air"]
-    is_valid = any(ingredient in ingredients.lower() for ingredient in valid_ingredients)
+    is_valid = any(i in ingredients.lower() for i in valid_ingredients)
     if is_valid:
         return f"({ingredients} - VALID)"
     else:

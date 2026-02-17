@@ -17,24 +17,24 @@ if __name__ == "__main__":
     try:
         result = alchemy.create_fire()
         print(f"alchemy.create_fire(): {result}")
-    except AttributeError as e:
+    except AttributeError:
         print("AttributeError - not exposed")
     try:
         result = alchemy.create_water()
         print(f"alchemy.create_water(): {result}")
-    except AttributeError as e:
+    except AttributeError:
         print("AttributeError - not exposed")
     try:
         print("alchemy.create_earth(): ", end="")
         alchemy.create_earth()
-    except AttributeError as e:
+    except AttributeError:
         print("AttributeError - not exposed")
     try:
         print("alchemy.create_air(): ", end="")
         alchemy.create_air()
-    except AttributeError as e:
+    except AttributeError:
         print("AttributeError - not exposed")
 
-print("\nPackage metadata:")
-print(f"Version: {alchemy.__version__}")
-print(f"Author: {alchemy.__author__}")
+    print("\nPackage metadata:")
+    print(f"Version: {alchemy.__version__}")
+    print(f"Author: {alchemy.__author__}")
