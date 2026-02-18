@@ -1,5 +1,7 @@
 from ex3.CardFactory import CardFactory
-from ex3.GameStrategy import GameSrategy
+from ex3.GameStrategy import GameStrategy
+from typing import Optional
+
 
 class GameEngine():
     def __init__(self):
@@ -9,10 +11,10 @@ class GameEngine():
         self.total_damage = 0
         self.cards_created = 0
 
-    def configure_engine(self, factory: CardFactory, strategy: GameSrategy) -> None:
+    def configure_engine(
+            self, factory: CardFactory, strategy: GameStrategy) -> None:
         self.factory = factory
         self.strategy = strategy
-        print(f"Engine configured with {factory.__class__.__name__} and {strategy.get_strategy_name()}")
 
     def simulate_turn(self) -> dict:
         hand = [
@@ -28,18 +30,18 @@ class GameEngine():
         turn_result = self.strategy.execute_turn(hand, battlefield)
 
         self.turns_simulated += 1
-        # self.total_damage += turn_result.get('damage_dealt', 0)
-
+        self.total_damage += turn_result.get('damage_dealt', 0)
         return {
             'strategy': self.strategy.get_strategy_name(),
-            'hand': [card.get_name() for card in hand],
+            'hand': '[' + ', '.join([f"{card.name} \
+({card.cost})" for card in hand]) + ']',
             'actions': turn_result
         }
 
     def get_engine_status(self) -> dict:
         return {
             'turns_simulated': self.turns_simulated,
-            'strategy_used': self.strategy.get_strategy_name() if self.strategy else 'None',
+            'strategy_used': self.strategy.get_strategy_name(),
             'total_damage': self.total_damage,
             'cards_created': self.cards_created
         }

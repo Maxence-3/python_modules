@@ -19,7 +19,11 @@ class EliteCard(Card, Combatable, Magical):
         self.spell_power = spell_power
 
     def play(self, game_state: dict) -> dict:
-        pass
+        return {
+            'card_played': self.name,
+            'mana_used': self.cost,
+            'effect': 'Elite card deployed with full capabilities'
+        }
 
     def attack(self, target) -> dict:
         return {
@@ -29,7 +33,7 @@ class EliteCard(Card, Combatable, Magical):
             'combat_type': "melee"
         }
 
-    def defend(self, incoming_damage):
+    def defend(self, incoming_damage: int):
         damage_blocked = min(self.defense_power, incoming_damage)
         damage_taken = incoming_damage - damage_blocked
         return {
@@ -47,12 +51,20 @@ class EliteCard(Card, Combatable, Magical):
             'mana_used': 4
         }
 
-    def channel_mana(self, amount):
+    def channel_mana(self, amount: int) -> dict:
         self.mana_pool += amount
         return {'channeled': amount, 'total_mana': self.mana_pool}
 
-    def get_combat_stats(self):
-        return super().get_combat_stats()
+    def get_combat_stats(self) -> dict:
+        return {
+            'attack_power': self.attack_power,
+            'defense_power': self.defense_power,
+            'combat_rating': self.attack_power + self.defense_power
+        }
 
-    def get_magic_stats(self):
-        return super().get_magic_stats()
+    def get_magic_stats(self) -> dict:
+        return {
+            'mana_pool': self.mana_pool,
+            'spell_power': self.spell_power,
+            'magic_rating': self.mana_pool + self.spell_power
+        }

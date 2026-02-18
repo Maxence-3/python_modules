@@ -20,5 +20,14 @@ if __name__ == "__main__":
 
     print("Simulating aggressive turn...")
     turn_result = engine.simulate_turn()
+    print(f"Hand: {turn_result['hand']}\n")
 
-    print(f"Hand: {turn_result['hand']}")
+    print("Turn execution:")
+    print(f"Strategy: {turn_result['strategy']}")
+    print(f"Actions: {turn_result['actions']}\n")
+
+    print("Game Report:")
+    print(engine.get_engine_status())
+
+    print("\nAbstract Factory + Strategy Pattern: \
+Maximum flexibility achieved!")

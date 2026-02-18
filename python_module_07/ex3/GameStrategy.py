@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
-class GameSrategy(ABC):
+
+class GameStrategy(ABC):
     @abstractmethod
     def execute_turn(self, hand: list, battlefield: list) -> dict:
         pass
