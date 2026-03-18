@@ -1,6 +1,7 @@
 import os
 import sys
 
+
 try:
     from dotenv import load_dotenv
 except ImportError:
@@ -17,6 +18,7 @@ DEFAULTS: dict[str, str | None] = {
     "ZION_ENDPOINT": "http://localhost:8080"
 }
 
+
 def get_config() -> tuple[dict[str, str | None], list[str]]:
     config = {}
     missing = []
@@ -26,8 +28,9 @@ def get_config() -> tuple[dict[str, str | None], list[str]]:
         if value is None:
             missing.append(key)
         config[key] = value
-    
+
     return config, missing
+
 
 def format_database(url: str | None) -> str:
     if url is None:
@@ -36,15 +39,18 @@ def format_database(url: str | None) -> str:
         return "Connected to local instance"
     return "Connected to remote instance"
 
+
 def format_api(key: str | None) -> str:
     if key is None:
         return "Not configured [warning]"
     return "Authenticated"
 
+
 def format_zion(endpoint: str | None) -> str:
     if endpoint is None:
         return "Offline"
     return "Online"
+
 
 def security_check(config: dict[str, str | None]) -> list[str]:
     checks = []
@@ -54,7 +60,7 @@ def security_check(config: dict[str, str | None]) -> list[str]:
         checks.append("[WARN] API_KEY looks like a weak/default secret")
     else:
         checks.append("[OK] No hardcoded secrets detected")
-    
+
     if os.path.isfile(".env"):
         checks.append("[OK] .env file properly configured")
     else:
@@ -63,6 +69,7 @@ def security_check(config: dict[str, str | None]) -> list[str]:
     checks.append("[OK] Production overrides available")
 
     return checks
+
 
 if __name__ == "__main__":
     print("ORACLE STATUS: Reading the Matrix...\n")
@@ -83,5 +90,5 @@ if __name__ == "__main__":
     print("\nEnvironment security check:")
     for line in security_check(config):
         print(f"{line}")
-    
+
     print("\nThe Oracle sees all configurations.")

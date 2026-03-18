@@ -1,4 +1,5 @@
-import sys, os
+import os
+import sys
 
 
 def in_venv() -> bool:
@@ -14,7 +15,8 @@ def python_info(in_venv: bool) -> None:
     print(f"Current Python: {sys.executable}")
     if in_venv:
         print(
-            f"Virtual Environement: {os.path.basename(os.environ.get('VIRTUAL_ENV'))}"
+            f"Virtual Environement: \
+{os.path.basename(os.environ.get('VIRTUAL_ENV'))}"
         )
         print(f"Environement Path: {os.environ.get('VIRTUAL_ENV')}")
     else:
