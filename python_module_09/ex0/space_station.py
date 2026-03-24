@@ -36,7 +36,8 @@ if __name__ == "__main__":
     print(f"Power: {valid_station.power_level}%")
     print(f"Oxygen: {valid_station.oxygen_level}%")
     print(
-        f"Status: {'Operational' if valid_station.is_operational else 'Non-Operational'}"
+        f"Status: \
+{'Operational' if valid_station.is_operational else 'Non-Operational'}\n"
     )
     print("=" * 40)
 
